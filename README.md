@@ -102,27 +102,33 @@ If your application relies on multiple services (e.g., a database), you can mana
     version: '3.8'
     services:
       app:
-        image: your-app-name
+        image: api.skillami.com
         build:
           context: .
           dockerfile: Dockerfile
         ports:
           - "3000:3000"
         environment:
-          NODE_ENV: production
+          - NODE_ENV=production
+          - MONGO_URI=mongodb://mongo:27017/skillami
+          - PORT=3000
         depends_on:
           - mongo
-        command: npm run start:prod
-
+        networks:
+          - skillami
       mongo:
         image: mongo:latest
         ports:
           - "27017:27017"
         volumes:
           - mongo-data:/data/db
-
+        networks:
+          - skillami
     volumes:
       mongo-data:
+    networks:
+      skillami:
+        driver: bridge
     ```
 
 This setup includes a MongoDB service that the NestJS app depends on.
