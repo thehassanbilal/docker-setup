@@ -1,4 +1,3 @@
-Certainly! Here's the guide with just the file contents separately and without extra explanatory text in the code sections, making it easier to copy only the necessary parts.
 
 ---
 
