@@ -1,6 +1,7 @@
-Sure! Here's the revised guide with separate code snippets for the `Dockerfile` and `.dockerignore` files, making it easier to copy and follow along.
+Certainly! Here's the guide with just the file contents separately and without extra explanatory text in the code sections, making it easier to copy only the necessary parts.
 
-```markdown
+---
+
 # Dockerizing a NestJS Application
 
 This guide will help you Dockerize your NestJS application, making it easier to set up and manage in different environments.
@@ -15,13 +16,7 @@ Before you start, make sure you have:
 
 ## Step 1: Create a Dockerfile
 
-The `Dockerfile` tells Docker how to build your application image.
-
-1. In the root directory of your NestJS project, create a file named `Dockerfile`.
-
-2. Copy and paste the following code into your `Dockerfile`.
-
-### Dockerfile
+Create a `Dockerfile` in the root directory of your NestJS project with the following content:
 
 ```Dockerfile
 # Step 1: Use the official Node.js runtime as a base image
@@ -51,13 +46,7 @@ CMD ["npm", "run", "start:prod"]
 
 ## Step 2: Create a `.dockerignore` File
 
-The `.dockerignore` file specifies which files and directories should be excluded from the Docker image to keep it lightweight.
-
-1. In the root directory of your project, create a file named `.dockerignore`.
-
-2. Copy and paste the following code into your `.dockerignore` file.
-
-### .dockerignore
+Create a `.dockerignore` file in the root directory with the following content:
 
 ```plaintext
 # Node modules
@@ -78,37 +67,25 @@ docker-compose.yml
 
 ## Step 3: Build the Docker Image
 
-Now, let's build the Docker image for your NestJS application.
+Build the Docker image for your NestJS application by running the following command in your project's root directory:
 
-1. Open your terminal and navigate to your project's root directory.
+```bash
+docker build -t your-app-name .
+```
 
-2. Run the following command to build the Docker image:
-
-    ```bash
-    docker build -t your-app-name .
-    ```
-
-    Replace `your-app-name` with a suitable name for your Docker image.
+Replace `your-app-name` with a suitable name for your Docker image.
 
 ## Step 4: Run the Docker Container
 
-After building the image, you can run it in a container using:
+Run the Docker container using the following command:
 
 ```bash
 docker run -p 3000:3000 your-app-name
 ```
 
-The `-p 3000:3000` flag maps port 3000 of the container to port 3000 on your local machine.
-
 ## Step 5: Optional - Use Docker Compose
 
-If your application depends on multiple services (e.g., a database), Docker Compose can help manage them.
-
-1. In the root of your project, create a file named `docker-compose.yml`.
-
-2. Copy and paste the following configuration into your `docker-compose.yml` file.
-
-### docker-compose.yml
+If your application depends on multiple services (e.g., a database), you can manage them with Docker Compose. Create a `docker-compose.yml` file with the following content:
 
 ```yaml
 version: '3.8'
@@ -143,17 +120,13 @@ networks:
     driver: bridge
 ```
 
-This setup includes a MongoDB service that the NestJS app depends on.
-
 ## Step 6: Run the Application with Docker Compose
 
-To start all services defined in the `docker-compose.yml` file, run:
+Start all services defined in the `docker-compose.yml` file with the following command:
 
 ```bash
 docker-compose up -d
 ```
-
-The `-d` flag runs the containers in detached mode (in the background).
 
 ## Step 7: Access Your Application
 
@@ -174,10 +147,3 @@ To view the logs of a running container, use:
 ```bash
 docker logs <container_id_or_name>
 ```
-
-## Conclusion
-
-By following this guide, you can easily Dockerize your NestJS application, streamlining deployment and scaling across various environments. Docker ensures your application behaves consistently, no matter where it is deployed.
-```
-
-This version makes each file's code separately copyable, making the process easier to follow.
