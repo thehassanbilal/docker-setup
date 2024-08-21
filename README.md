@@ -22,28 +22,28 @@ A `Dockerfile` is a script that contains a series of instructions to build a Doc
 2. Add the following content to the `Dockerfile`:
 
     ```Dockerfile
-    # Step 1: Use an official Node.js runtime as a base image
-    FROM node:18-alpine
-
-    # Step 2: Set the working directory inside the container
+    #Step 1: Use an oficial Node.js runtime as a base image
+    FROM node:20.16.0 
+    
+    #Step 2: Set the working directory inside the container
     WORKDIR /app
-
-    # Step 3: Copy package.json and package-lock.json files to the container
+    
+    #Step 3: Copy package.json and package-lock.json files to container
     COPY package*.json ./
-
-    # Step 4: Install dependencies
+    
+    #Step 4: Install dependencies
     RUN npm install
-
-    # Step 5: Copy the rest of the application code to the container
+    
+    #Step 5: Copy the rest of the application code to the container
     COPY . .
-
-    # Step 6: Build the NestJS application
+    
+    #Step 6: Build the NestJS application
     RUN npm run build
-
-    # Step 7: Expose the port on which the app will run
+    
+    #Step 7: Expose the port on which the app will run
     EXPOSE 3000
-
-    # Step 8: Define the command to start the application
+    
+    #Step 8: Run the NestJS application
     CMD ["npm", "run", "start:prod"]
     ```
 
@@ -52,11 +52,20 @@ A `Dockerfile` is a script that contains a series of instructions to build a Doc
 To prevent unnecessary files from being included in the Docker image, create a `.dockerignore` file in the root of your project:
 
 ```plaintext
+# node modules
 node_modules
+
+# build files
 dist
-.git
+
+# docker files
 Dockerfile
+docker-compose.yml
 .dockerignore
+
+# git files
+.git
+.gitignore
 ```
 
 This ensures that the Docker image remains lightweight.
